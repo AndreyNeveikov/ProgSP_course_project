@@ -38,7 +38,7 @@ public class ClientHandler implements Runnable {
                 switch (line) {
                     case "ShutDown":
                         this.turnOffServer = true;
-                        mysqlQuery.disconnect();
+                        DatabaseDeployment.disconnect();
                     case "Disconnect":
                         try {
                             out.close();

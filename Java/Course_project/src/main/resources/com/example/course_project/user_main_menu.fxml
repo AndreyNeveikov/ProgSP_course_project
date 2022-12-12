@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="748.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.course_project.ClientController">
+    <children>
+        <Button fx:id="btnConnect" layoutX="14.0" layoutY="118.0" mnemonicParsing="false" onAction="#onConnectButtonClick" prefHeight="18.0" prefWidth="82.0" text="Connect" />
+        <Button fx:id="btnSend" disable="true" layoutX="649.0" layoutY="79.0" mnemonicParsing="false" onAction="#onSendButtonClick" prefHeight="26.0" prefWidth="82.0" text="Send" />
+        <Button fx:id="btnDisconnect" disable="true" layoutX="14.0" layoutY="155.0" mnemonicParsing="false" onAction="#onDisconnectButtonClick" prefHeight="18.0" prefWidth="82.0" text="Disconnect" />
+        <Button fx:id="btnShutDown" disable="true" layoutX="14.0" layoutY="472.0" mnemonicParsing="false" onAction="#onShutDownButtonClick" prefHeight="18.0" prefWidth="82.0" text="StopClient" />
+        <Button fx:id="btnSelect" disable="true" layoutX="340.0" layoutY="117.0" mnemonicParsing="false" onAction="#onSelectButtonClick" prefHeight="26.0" prefWidth="82.0" text="Select" />
+        <Button fx:id="btnRefresh" disable="true" layoutX="340.0" layoutY="391.0" mnemonicParsing="false" onAction="#onRefreshButtonClick" prefHeight="26.0" prefWidth="82.0" text="Refresh" />
+        <TextField fx:id="fieldIP" layoutX="14.0" layoutY="33.0" prefHeight="10.0" prefWidth="82.0" promptText="127.0.0.1" />
+        <TextField fx:id="fieldPort" layoutX="14.0" layoutY="80.0" prefHeight="18.0" prefWidth="82.0" promptText="2229" />
+        <TextField fx:id="fieldM" disable="true" layoutX="150.0" layoutY="79.0" prefHeight="26.0" prefWidth="486.0" />
+        <TextArea fx:id="textResult" editable="false" layoutX="192.0" layoutY="466.0" prefHeight="0.0" prefWidth="378.0" />
+        <Label layoutX="14.0" layoutY="14.0" text="IP address    " />
+        <Label layoutX="14.0" layoutY="61.0" prefHeight="18.0" prefWidth="35.0" text="Port    " />
+        <Label layoutX="282.0" layoutY="61.0" prefHeight="18.0" prefWidth="198.0" text="Sending data (посылаемые данные)" />
+        <Label layoutX="275.0" layoutY="445.0" prefHeight="18.0" prefWidth="212.0" text="Result (Response from the server)" />
+        <ListView fx:id="elListView" disable="true" layoutX="150.0" layoutY="193.0" prefHeight="181.0" prefWidth="486.0">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ListView>
+        <RadioButton fx:id="rBtnInsert" disable="true" layoutX="150.0" layoutY="159.0" mnemonicParsing="false" selected="true" text="Insert">
+            <toggleGroup>
+                <ToggleGroup fx:id="sqlQuery" />
+            </toggleGroup>
+        </RadioButton>
+        <RadioButton fx:id="rBtnUpdate" disable="true" layoutX="351.0" layoutY="159.0" mnemonicParsing="false" text="Update" toggleGroup="$sqlQuery" />
+        <RadioButton fx:id="rBtnDelete" disable="true" layoutX="580.0" layoutY="159.0" mnemonicParsing="false" text="Delete" toggleGroup="$sqlQuery" />
+      <Text layoutX="358.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Client">
+         <font>
+            <Font name="Times New Roman Bold" size="18.0" />
+         </font>
+      </Text>
+    </children>
+</AnchorPane>

@@ -10,7 +10,7 @@ public class ServerMain {
 
         System.out.println("Server started");
         try {
-            server = new ServerSocket(2229);
+            server = new ServerSocket(2222);
             server.setReuseAddress(true);
 
             while (true) {
