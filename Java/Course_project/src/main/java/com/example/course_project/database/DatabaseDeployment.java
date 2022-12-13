@@ -70,11 +70,11 @@ public class DatabaseDeployment {
                 "product_maximum_percent          double      not null," +
                 "product_minimum_duration         varchar(15) not null," +
                 "product_maximum_duration         varchar(15) not null," +
-                "product_maximum_rating_access    double      not null," +
+                "product_minimum_rating_access    double      not null," +
                 "product_mandatory_goal           varchar(15) not null)");
 
         statement.executeUpdate("CREATE TABLE bank_employee_authorization (" +
-                "employee_id               int         primary key," +
+                "employee_id               int         auto_increment   primary key," +
                 "employee_login            varchar(30) not null, " +
                 "employee_password         varchar(30) not null," +
                 "employee_access_status    int         not null," +

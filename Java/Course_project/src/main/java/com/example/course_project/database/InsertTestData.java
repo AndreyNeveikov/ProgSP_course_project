@@ -53,6 +53,58 @@ public class InsertTestData {
                 "client_passport_series, client_passport_number, client_status)" +
                 "VALUES ('Semenov', 'Semen', 'Semenovich', '2001-01-01', 'PB461F3D51VDF', 'MP', '6235654', 'new');");
 
+        ///////////////////////////////////////////////loan_product/////////////////////////////////////////////////////
+
+        statement.executeUpdate("INSERT INTO loan_product (" +
+                "product_id, product_minimum_amount, product_maximum_amount, product_minimum_percent, product_maximum_percent," +
+                "product_minimum_duration, product_maximum_duration, product_minimum_rating_access, product_mandatory_goal)" +
+                "VALUES ('1', '500.0', '10000.0', '3.0', '25.0', '1', '5', '25.0', 'car');");
+        statement.executeUpdate("INSERT INTO loan_product (" +
+                "product_id, product_minimum_amount, product_maximum_amount, product_minimum_percent, product_maximum_percent," +
+                "product_minimum_duration, product_maximum_duration, product_minimum_rating_access, product_mandatory_goal)" +
+                "VALUES ('2', '15000.0', '500000.0', '7.0', '25.0', '5', '50', '50.0', 'flat');");
+        statement.executeUpdate("INSERT INTO loan_product (" +
+                "product_id, product_minimum_amount, product_maximum_amount, product_minimum_percent, product_maximum_percent," +
+                "product_minimum_duration, product_maximum_duration, product_minimum_rating_access, product_mandatory_goal)" +
+                "VALUES ('3', '1500.0', '20000.0', '5.0', '17.0', '1', '10', '10.0', 'unknown');");
+        statement.executeUpdate("INSERT INTO loan_product (" +
+                "product_id, product_minimum_amount, product_maximum_amount, product_minimum_percent, product_maximum_percent," +
+                "product_minimum_duration, product_maximum_duration, product_minimum_rating_access, product_mandatory_goal)" +
+                "VALUES ('4', '100.0', '5000.0', '3.5', '12.7', '1', '3', '30.0', 'unknown');");
+        statement.executeUpdate("INSERT INTO loan_product (" +
+                "product_id, product_minimum_amount, product_maximum_amount, product_minimum_percent, product_maximum_percent," +
+                "product_minimum_duration, product_maximum_duration, product_minimum_rating_access, product_mandatory_goal)" +
+                "VALUES ('5', '50000.0', '1000000.0', '6.0', '16.0', '3', '30', '80.0', 'flat');");
+        statement.executeUpdate("INSERT INTO loan_product (" +
+                "product_id, product_minimum_amount, product_maximum_amount, product_minimum_percent, product_maximum_percent," +
+                "product_minimum_duration, product_maximum_duration, product_minimum_rating_access, product_mandatory_goal)" +
+                "VALUES ('6', '3000.0', '60000.0', '7.0', '12.0', '1', '8', '38.0', 'car');");
+
+        //////////////////////////////////////////bank_employee_authorization///////////////////////////////////////////
+
+        statement.executeUpdate("INSERT INTO bank_employee_authorization (" +
+                "employee_login, employee_password, employee_access_status, employee_name, employee_surname," +
+                "employee_patronymic, employee_job_title)" +
+                "VALUES ('admin', 'admin', '0', 'Alexander', 'Alexandrov', 'Alexandrovich', 'Exclusive admin');");
+        statement.executeUpdate("INSERT INTO bank_employee_authorization (" +
+                "employee_login, employee_password, employee_access_status, employee_name, employee_surname," +
+                "employee_patronymic, employee_job_title)" +
+                "VALUES ('manager', 'manager', '1', 'Roman', 'Romanov', 'Romanovich', 'Head of managers');");
+        statement.executeUpdate("INSERT INTO bank_employee_authorization (" +
+                "employee_login, employee_password, employee_access_status, employee_name, employee_surname," +
+                "employee_patronymic, employee_job_title)" +
+                "VALUES ('saler', 'saler', '2', 'Igor', 'Igorev', 'Igorevich', 'Junior saler');");
+        statement.executeUpdate("INSERT INTO bank_employee_authorization (" +
+                "employee_login, employee_password, employee_access_status, employee_name, employee_surname," +
+                "employee_patronymic, employee_job_title)" +
+                "VALUES ('saler2', 'saler2', '2', 'Artem', 'Artemov', 'Artemovich', 'Senior saler');");
+
+        //////////////////////////////////////////bank_financial_flows//////////////////////////////////////////////////
+
+        statement.executeUpdate("INSERT INTO bank_financial_flows (" +
+                "fin_date, bank_own_funds, bank_borrowed_funds, bank_reserve_funds, bank_refinancing_rate," +
+                "central_bank_refinancing_rate, bank_monthly_expected_income, bank_monthly_expected_costs)" +
+                "VALUES ('2022-12-11', '10000000.0', '300000.0', '150000.0', '8.5', '7.0', '0.0', '157000.0');");
 
         //////////////////////////////////////fct_clients_financial_data////////////////////////////////////////////////
 
@@ -60,56 +112,13 @@ public class InsertTestData {
                 "client_id, client_loan_id, employee_loaned_id, client_loaned_date, client_total_debt," +
                 "client_monthly_income, client_monthly_loan_payment, client_loan_interest, client_number_of_repaid_loans," +
                 "client_total_number_of_loans, client_value_of_collateral, client_number_of_overdue_payments, client_risk_rate)" +
-                "VALUES ('1', '1', '1', '2020-02-20', '5400.00', '1300.00', '100.00', '15.0', '0', '1', '7500.00', '0', '50');");
-/*
+                "VALUES ('1', '1', '1', '2022-12-11', '4400.00', '1300.00', '100.00', '15.0', '0', '1', '7500.00', '0', '50');");
+        statement.executeUpdate("INSERT INTO fct_clients_financial_data (" +
+                "client_id, client_loan_id, employee_loaned_id, client_loaned_date, client_total_debt," +
+                "client_monthly_income, client_monthly_loan_payment, client_loan_interest, client_number_of_repaid_loans," +
+                "client_total_number_of_loans, client_value_of_collateral, client_number_of_overdue_payments, client_risk_rate)" +
+                "VALUES ('2', '5', '4', '2022-12-11', '77000.00', '2500.00', '1000.00', '11.0', '0', '1', '45000.00', '0', '90');");
 
-        statement.executeUpdate("CREATE TABLE fct_clients_financial_data (" +
-                "client_id                            int    primary key," +
-                "client_loan_id                       int    not null, " +
-                "employee_loaned_id                   int    not null, " +
-                "client_loaned_date                   date   not null, " +
-                "client_total_debt                    double not null," +
-                "client_monthly_income                double not null," +
-                "client_monthly_loan_payment          double not null," +
-                "client_loan_interest                 double not null," +
-                "client_number_of_repaid_loans        int    not null," +
-                "client_total_number_of_loans         int    not null," +
-                "client_value_of_collateral           double not null," +
-                "client_number_of_overdue_payments    int    not null," +
-                "client_risk_rate                     double not null)");
-
-        statement.executeUpdate("CREATE TABLE loan_product (" +
-                "product_id                       int         primary key," +
-                "product_minimum_amount           double      not null, " +
-                "product_maximum_amount           double      not null," +
-                "product_minimum_percent          double      not null," +
-                "product_maximum_percent          double      not null," +
-                "product_minimum_duration         varchar(15) not null," +
-                "product_maximum_duration         varchar(15) not null," +
-                "product_maximum_rating_access    double      not null," +
-                "product_mandatory_goal           varchar(15) not null)");
-
-        statement.executeUpdate("CREATE TABLE bank_employee_authorization (" +
-                "employee_id               int         primary key," +
-                "employee_login            varchar(30) not null, " +
-                "employee_password         varchar(30) not null," +
-                "employee_access_status    int         not null," +
-                "employee_name             varchar(30) not null," +
-                "employee_surname          varchar(30) not null," +
-                "employee_patronymic       varchar(30) not null," +
-                "employee_job_title        varchar(30) not null)");
-
-        statement.executeUpdate("CREATE TABLE bank_financial_flows (" +
-                "fin_date                         date        primary key," +
-                "bank_own_funds                   double      not null," +
-                "bank_borrowed_funds              double      not null, " +
-                "bank_reserve_funds               double      not null," +
-                "bank_refinancing_rate            double      not null," +
-                "central_bank_refinancing_rate    double      not null," +
-                "bank_monthly_expected_income     double      not null," +
-                "bank_monthly_expected_costs      double      not null)");
-
-*/
         InsertTestData.disconnect();
     }
 }
