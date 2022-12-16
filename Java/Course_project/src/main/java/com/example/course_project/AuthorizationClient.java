@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.net.*;
 
 public class AuthorizationClient {
-    @FXML
-    private Button enter_the_application;
 
     Socket sock = null;
 

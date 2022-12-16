@@ -34,7 +34,7 @@
                         <Font name="Centaur" size="24.0" />
                     </font>
                 </Button>
-                <Button id="credit_products" fx:id="infographics" layoutX="393.0" layoutY="197.0" mnemonicParsing="false" onAction="#onCreditProductsButtonClick" prefHeight="46.0" prefWidth="326.0" style="-fx-background-color: #3d6eff;" text="Кредитные продукты">
+                <Button id="credit_products" fx:id="credit_products" layoutX="393.0" layoutY="197.0" mnemonicParsing="false" onAction="#onCreditProductsButtonClick" prefHeight="46.0" prefWidth="326.0" style="-fx-background-color: #3d6eff;" text="Кредитные продукты">
                     <font>
                         <Font name="Centaur" size="24.0" />
                     </font>
