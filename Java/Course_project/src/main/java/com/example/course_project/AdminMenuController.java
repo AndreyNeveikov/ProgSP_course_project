@@ -33,21 +33,15 @@ public class AdminMenuController {
     }
     @FXML
     protected void onHelpButtonClick() {
-        help.setOnAction(event -> {help.getScene().getWindow().hide();});
+        help.setOnAction(event -> {
+            help.getScene().getWindow().hide();
 
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("admin_help.fxml"));
-
-        try {
-            loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        Parent root = loader.getRoot();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.showAndWait();
+            try {
+                ClientCommonFuctions.openNewWindow("admin_help.fxml", (Stage) help.getScene().getWindow());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
     @FXML
     protected void onReportsButtonClick() {
@@ -65,21 +59,14 @@ public class AdminMenuController {
     @FXML
     protected void onMoveBackButtonClick() {
 
-        move_back.setOnAction(event -> {move_back.getScene().getWindow().hide();});
-
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("admin_menu.fxml"));
-
-        try {
-            loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        Parent root = loader.getRoot();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.showAndWait();
+        move_back.setOnAction(event -> {
+            move_back.getScene().getWindow().hide();
+            try {
+                ClientCommonFuctions.openNewWindow("admin_menu.fxml", (Stage) move_back.getScene().getWindow());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
 }

@@ -1,46 +1,38 @@
 package com.example.course_project.server;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
+/**
+ * @author mercenery
+ *
+ */
 public class ServerMain {
+
+    static ExecutorService executeIt = Executors.newFixedThreadPool(2);
+
     public static void main(String[] args) {
-        ServerSocket server = null;
 
-        System.out.println("Server started");
-        try {
-            server = new ServerSocket(2222);
-            server.setReuseAddress(true);
+        try (ServerSocket server = new ServerSocket(2222))
+        {
+            System.out.println("Server socket created, command console reader for listen to server commands");
 
-            while (true) {
+            while (!server.isClosed()) {
+
                 Socket client = server.accept();
 
-                System.out.println("New client connected "
-                        + client.getInetAddress().getHostAddress());
+                executeIt.execute(new ClientHandler(client));
+                System.out.print("Connection accepted.");
+            }
 
-                ClientHandler clientSock = new ClientHandler(client);
-                clientSock.thread.join();
-                if(clientSock.isTurnOffServer()) {
-                    break;
-                }
-            }
-        }
-        catch (IOException e) {
+            executeIt.shutdown();
+        } catch (IOException e) {
             e.printStackTrace();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        } finally {
-            if (server != null) {
-                try {
-                    server.close();
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
 }
-
-

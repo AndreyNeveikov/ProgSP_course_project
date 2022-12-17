@@ -11,7 +11,7 @@ public class StartClient extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(StartClient.class.getResource("admin_menu.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(StartClient.class.getResource("authorization.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 750, 520);
         stage.setTitle("TransGazAlmazNeftMetStroyPromCviazBank");
         stage.setScene(scene);

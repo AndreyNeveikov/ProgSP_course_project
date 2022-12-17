@@ -47,41 +47,29 @@ public class SalerMenuController {
 
     @FXML
     protected void onCreditProductsButtonClick() {
-        credit_products.setOnAction(event -> {credit_products.getScene().getWindow().hide();});
-
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("view_credit_products.fxml"));
+        credit_products.setOnAction(event -> {
+            credit_products.getScene().getWindow().hide();
 
         try {
-            loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        Parent root = loader.getRoot();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.showAndWait();
+                ClientCommonFuctions.openNewWindow("view_credit_products.fxml", (Stage) move_back.getScene().getWindow());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     @FXML
     protected void onMoveBackButtonClick() {
 
-        move_back.setOnAction(event -> {move_back.getScene().getWindow().hide();});
+        move_back.setOnAction(event -> {
+            move_back.getScene().getWindow().hide();
 
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("saler_menu.fxml"));
-
-        try {
-            loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        Parent root = loader.getRoot();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.showAndWait();
+            try {
+                ClientCommonFuctions.openNewWindow("admin_help.fxml", (Stage) move_back.getScene().getWindow());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     @FXML
