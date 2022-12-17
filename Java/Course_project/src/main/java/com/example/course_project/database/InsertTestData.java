@@ -85,11 +85,11 @@ public class InsertTestData {
         statement.executeUpdate("INSERT INTO bank_employee_authorization (" +
                 "employee_login, employee_password, employee_access_status, employee_name, employee_surname," +
                 "employee_patronymic, employee_job_title)" +
-                "VALUES ('admin', 'admin', '0', 'Alexander', 'Alexandrov', 'Alexandrovich', 'Exclusive admin');");
+                "VALUES ('admin', 'admin', '1', 'Alexander', 'Alexandrov', 'Alexandrovich', 'Exclusive admin');");
         statement.executeUpdate("INSERT INTO bank_employee_authorization (" +
                 "employee_login, employee_password, employee_access_status, employee_name, employee_surname," +
                 "employee_patronymic, employee_job_title)" +
-                "VALUES ('manager', 'manager', '1', 'Roman', 'Romanov', 'Romanovich', 'Head of managers');");
+                "VALUES ('manager', 'manager', '3', 'Roman', 'Romanov', 'Romanovich', 'Head of managers');");
         statement.executeUpdate("INSERT INTO bank_employee_authorization (" +
                 "employee_login, employee_password, employee_access_status, employee_name, employee_surname," +
                 "employee_patronymic, employee_job_title)" +

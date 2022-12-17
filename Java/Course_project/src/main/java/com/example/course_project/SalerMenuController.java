@@ -1,5 +1,6 @@
 package com.example.course_project;
 
+import com.example.course_project.database.QueriesSQL;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.*;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class SalerMenuController {
@@ -21,6 +23,8 @@ public class SalerMenuController {
 
     @FXML
     private Button credit_products;
+
+    int status = 2;
 
     @FXML
     ListView<String> loan_products = new ListView<String>();
@@ -51,7 +55,7 @@ public class SalerMenuController {
             credit_products.getScene().getWindow().hide();
 
         try {
-                ClientCommonFuctions.openNewWindow("view_credit_products.fxml", (Stage) move_back.getScene().getWindow());
+                ClientCommonFuctions.openNewWindow("view_credit_products.fxml", (Stage) credit_products.getScene().getWindow());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -74,6 +78,8 @@ public class SalerMenuController {
 
     @FXML
     protected void onRefreshButtonClick() {
-
+        String loan_products_list = ClientCommonFuctions.clientServerDialog(status, 1,
+                "");
+        System.out.println(loan_products_list);
     }
 }

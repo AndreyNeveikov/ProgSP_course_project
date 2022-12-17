@@ -1,6 +1,7 @@
 package com.example.course_project.database;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class QueriesSQL {
 
@@ -13,8 +14,6 @@ public class QueriesSQL {
     public static final String SELECT_ALL_LOAN_PRODUCTS_QUERY = "SELECT * FROM loan_product";
 
     public static final String SELECT_ALL_CLIENTS_QUERY = "SELECT * FROM clients_personal_data";
-
-    public static final String SELECT_ALL_EMPLOYEES_QUERY = "SELECT * FROM bank_employee_authorization";
 
 
     static {
@@ -39,8 +38,9 @@ public class QueriesSQL {
         statement.close();
         connection.close();
     }
-    public static void main(String[] args) throws SQLException {
-        statement.executeUpdate("USE bank_credit_policy");
+    public static ArrayList<LoanProducts> getLoanProducts() throws SQLException {
+        ArrayList<LoanProducts> productList = new ArrayList<>();
+
         ResultSet resSet = statement.executeQuery(SELECT_ALL_LOAN_PRODUCTS_QUERY);
 
         int product_id;
@@ -68,10 +68,30 @@ public class QueriesSQL {
             LoanProducts products = new LoanProducts(product_id, product_minimum_amount, product_maximum_amount,
                     product_minimum_percent, product_maximum_percent, product_minimum_duration, product_maximum_duration,
                     product_minimum_rating_access, product_mandatory_goal);
-            System.out.println(products);
-        }
 
-        QueriesSQL.disconnect();
+            productList.add(products);
+        }
+        System.out.println(productList);
+
+        return productList;
+    }
+
+    public static int getUsers(String login, String password) throws SQLException {
+        int user_status = 0;
+
+        System.out.println("1");
+
+        statement.executeUpdate("USE bank_credit_policy");
+        ResultSet resSet = statement.executeQuery("SELECT employee_access_status FROM bank_employee_authorization "+
+                "WHERE employee_login ='" + login +"' and employee_password = '" + password +"';");
+        System.out.println("2");
+
+        while(resSet.next()){
+            user_status = resSet.getInt("employee_access_status");
+        }
+        return user_status;
     }
 }
 
+
+/*main(String[] args)*/
