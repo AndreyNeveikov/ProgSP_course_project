@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.net.Socket;
 import java.sql.SQLException;
 
+import static com.example.course_project.database.QueriesSQL.getClients;
+import static com.example.course_project.database.QueriesSQL.getLoanProducts;
+
 public class ClientHandler implements Runnable {
 
     private static Socket clientDialog;
@@ -28,18 +31,20 @@ public class ClientHandler implements Runnable {
                 DataOutputStream out = new DataOutputStream(clientDialog.getOutputStream());
                 DataInputStream in = new DataInputStream(clientDialog.getInputStream());
 
-
                 String entry = in.readUTF();
                 System.out.println("READ from clientDialog message - " + entry);
 
                 switch_params = entry.split(";");
+
+                System.out.println(switch_params[2]);
+
 
                 switch (switch_params[0]) {
 
                     case "0":
                         String[] login_password;
                         login_password = switch_params[2].split("/");
-                        out.write(QueriesSQL.getUsers(login_password[0], login_password[1]));
+                        out.writeUTF(QueriesSQL.getUsers(login_password[0], login_password[1]));
                         break;
                     case "1":
 
@@ -47,11 +52,16 @@ public class ClientHandler implements Runnable {
                     case "2":
                         switch (switch_params[1]) {
                             case "1":
-                                String loan_products_list = String.valueOf(QueriesSQL.getLoanProducts());
-                                out.write(loan_products_list.getBytes());
+                                String loan_products_list = String.valueOf(getLoanProducts());
+                                out.writeUTF(loan_products_list);
                                 break;
                             case "2":
-
+                                String bank_clients_list = String.valueOf(getClients());
+                                out.writeUTF(bank_clients_list);
+                                break;
+                            case "3":
+                                QueriesSQL.deleteClient(Integer.parseInt(switch_params[2]));
+                                out.writeUTF("Deleted");
                                 break;
                         }
                         break;

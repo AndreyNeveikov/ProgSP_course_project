@@ -27,16 +27,15 @@ public class LoanProducts {
 
     @Override
     public String toString() {
-        return "LoanProducts{" +
-                "product_id=" + product_id +
-                ", product_minimum_amount=" + product_minimum_amount +
-                ", product_maximum_amount=" + product_maximum_amount +
-                ", product_minimum_percent=" + product_minimum_percent +
-                ", product_maximum_percent=" + product_maximum_percent +
-                ", product_minimum_duration='" + product_minimum_duration + '\'' +
-                ", product_maximum_duration='" + product_maximum_duration + '\'' +
-                ", product_minimum_rating_access=" + product_minimum_rating_access +
-                ", product_mandatory_goal='" + product_mandatory_goal + '\'' +
-                '}';
+        return product_id +
+                "," + product_minimum_amount +
+                "," + product_maximum_amount +
+                "," + product_minimum_percent +
+                "," + product_maximum_percent +
+                "," + product_minimum_duration +
+                "," + product_maximum_duration +
+                "," + product_minimum_rating_access +
+                "," + product_mandatory_goal +
+                ';';
     }
 }

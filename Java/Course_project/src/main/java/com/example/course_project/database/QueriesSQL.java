@@ -38,6 +38,52 @@ public class QueriesSQL {
         statement.close();
         connection.close();
     }
+
+    public static ArrayList<Clients> getClients() throws SQLException {
+        ArrayList<Clients> clientsList = new ArrayList<>();
+
+        ResultSet resSet = statement.executeQuery(SELECT_ALL_CLIENTS_QUERY);
+
+        int client_id;
+        String client_name;
+        String client_surname;
+        String client_patronymic;
+        String client_date_of_birth;
+        String client_passport_personal_number;
+        String client_passport_series;
+        String client_passport_number;
+        String client_status;
+
+
+        while (resSet.next()) {
+
+            client_id = resSet.getInt("client_id");
+            client_name = resSet.getString("client_name");
+            client_surname = resSet.getString("client_surname");
+            client_patronymic = resSet.getString("client_patronymic");
+            client_date_of_birth = String.valueOf(resSet.getDate("client_date_of_birth"));
+            client_passport_personal_number = resSet.getString("client_passport_personal_number");
+            client_passport_series = resSet.getString("client_passport_series");
+            client_passport_number = resSet.getString("client_passport_number");
+            client_status = resSet.getString("client_status");
+
+            Clients clients = new Clients(client_id, client_name, client_surname,
+                    client_patronymic, client_date_of_birth, client_passport_personal_number, client_passport_series,
+                    client_passport_number, client_status);
+
+            clientsList.add(clients);
+        }
+        System.out.println(clientsList);
+
+        return clientsList;
+    }
+
+    public static void deleteClient(int id) throws SQLException {
+
+        statement.executeUpdate("USE bank_credit_policy");
+        statement.executeUpdate("DELETE FROM clients_personal_data WHERE client_id='2';");
+    }
+
     public static ArrayList<LoanProducts> getLoanProducts() throws SQLException {
         ArrayList<LoanProducts> productList = new ArrayList<>();
 
@@ -76,21 +122,20 @@ public class QueriesSQL {
         return productList;
     }
 
-    public static int getUsers(String login, String password) throws SQLException {
-        int user_status = 0;
-
-        System.out.println("1");
+    public static String getUsers(String login, String password) throws SQLException {
+        String user_status = "0";
 
         statement.executeUpdate("USE bank_credit_policy");
         ResultSet resSet = statement.executeQuery("SELECT employee_access_status FROM bank_employee_authorization "+
                 "WHERE employee_login ='" + login +"' and employee_password = '" + password +"';");
-        System.out.println("2");
 
         while(resSet.next()){
-            user_status = resSet.getInt("employee_access_status");
+            user_status = String.valueOf(resSet.getInt("employee_access_status"));
         }
         return user_status;
     }
+
+
 }
 
 

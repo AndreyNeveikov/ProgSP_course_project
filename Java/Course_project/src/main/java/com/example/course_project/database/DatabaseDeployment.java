@@ -93,7 +93,7 @@ public class DatabaseDeployment {
                 "bank_monthly_expected_income     double      not null," +
                 "bank_monthly_expected_costs      double      not null)");
 
-        statement.executeUpdate("ALTER TABLE fct_clients_financial_data\n" +
+        /*statement.executeUpdate("ALTER TABLE fct_clients_financial_data\n" +
                 "   ADD CONSTRAINT fk_t_fct_clients_fin_data_t_clients_pers_data FOREIGN KEY (client_id)\n" +
                 "      REFERENCES clients_personal_data (client_id);");
 
@@ -108,7 +108,7 @@ public class DatabaseDeployment {
         statement.executeUpdate("ALTER TABLE fct_clients_financial_data\n" +
                 "   ADD CONSTRAINT fk_t_fct_clients_fin_data_t_bank_fin_flows FOREIGN KEY (client_loaned_date)\n" +
                 "      REFERENCES bank_financial_flows (fin_date);");
-
+        */
         DatabaseDeployment.disconnect();
     }
 }

@@ -43,7 +43,7 @@ public class InsertTestData {
         statement.executeUpdate("INSERT INTO clients_personal_data (" +
                 "client_name, client_surname, client_patronymic, client_date_of_birth, client_passport_personal_number," +
                 "client_passport_series, client_passport_number, client_status)" +
-                "VALUES ('Petrov', 'Petr', 'Petrovich', '2000-01-13', 'PB59V78CG3CGP9', 'MP', '1616889', 'new');");
+                "VALUES ('Maximov', 'Maxim', 'Maximovich', '2000-01-13', 'PB59V78CG3CGP9', 'MP', '1616889', 'new');");
         statement.executeUpdate("INSERT INTO clients_personal_data (" +
                 "client_name, client_surname, client_patronymic, client_date_of_birth, client_passport_personal_number," +
                 "client_passport_series, client_passport_number, client_status)" +
@@ -74,7 +74,7 @@ public class InsertTestData {
         statement.executeUpdate("INSERT INTO loan_product (" +
                 "product_id, product_minimum_amount, product_maximum_amount, product_minimum_percent, product_maximum_percent," +
                 "product_minimum_duration, product_maximum_duration, product_minimum_rating_access, product_mandatory_goal)" +
-                "VALUES ('5', '50000.0', '1000000.0', '6.0', '16.0', '3', '30', '80.0', 'flat');");
+                "VALUES ('5', '50000.0', '900000.0', '6.0', '16.0', '3', '30', '80.0', 'flat');");
         statement.executeUpdate("INSERT INTO loan_product (" +
                 "product_id, product_minimum_amount, product_maximum_amount, product_minimum_percent, product_maximum_percent," +
                 "product_minimum_duration, product_maximum_duration, product_minimum_rating_access, product_mandatory_goal)" +

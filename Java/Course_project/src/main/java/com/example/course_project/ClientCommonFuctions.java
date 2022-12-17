@@ -49,7 +49,7 @@ public class ClientCommonFuctions {
                     oos.writeUTF(status + ";" + function_identifier + ";" + args_list);
                     oos.flush();
 
-                    response = String.valueOf(ois.read());
+                    response = ois.readUTF();
                     System.out.println("Server response " + response);
                 }
             }

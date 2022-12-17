@@ -16,7 +16,7 @@
                </font>
             </Button>
             <ListView id="loan_products" fx:id="loan_products" layoutX="198.0" layoutY="32.0" prefHeight="386.0" prefWidth="535.0" />
-            <Button id="refresh" fx:id="btnRefresh" layoutX="14.0" layoutY="121.0" mnemonicParsing="false" onAction="#onRefreshButtonClick" prefHeight="50.0" prefWidth="162.0" style="-fx-background-color: #3d6eff;" text="Обновить">
+            <Button id="refresh" fx:id="btnRefresh" layoutX="14.0" layoutY="121.0" mnemonicParsing="false" onAction="#onRefreshCreditProductsButtonClick" prefHeight="50.0" prefWidth="162.0" style="-fx-background-color: #3d6eff;" text="Обновить">
                <font>
                   <Font name="Centaur" size="24.0" />
                </font>
