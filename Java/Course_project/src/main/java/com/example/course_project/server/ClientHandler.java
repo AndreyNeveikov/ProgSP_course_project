@@ -71,8 +71,7 @@ public class ClientHandler implements Runnable {
                                 QueriesSQL.addClient(switch_params[2]);
                                 out.writeUTF("Added");
                             case "6":
-                                ScoringPersonData.getScoring(switch_params[2]);
-                                out.writeUTF("Scored");
+                                out.writeUTF(ScoringPersonData.getScoring(switch_params[2]));
                         }
                         break;
                     case "3":

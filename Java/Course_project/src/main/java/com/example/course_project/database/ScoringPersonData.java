@@ -1,11 +1,8 @@
 package com.example.course_project.database;
 
-import java.math.RoundingMode;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
+import static com.example.course_project.database.QueriesSQL.getFinFlows;
 import static com.example.course_project.database.QueriesSQL.getLoanProducts;
 
 public class ScoringPersonData {
@@ -55,11 +52,12 @@ public class ScoringPersonData {
                 ';';
     }
 
-    public static ArrayList<ScoringPersonData> getScoring(String credit_order) throws SQLException {
+    public static String getScoring(String credit_order) throws SQLException {
         double total_score = 0.0;
 
         String client = QueriesSQL.getClientScoringData(credit_order);
         String loan_products = String.valueOf(getLoanProducts());
+        String fin_flows = String.valueOf(getFinFlows());
 
         client = client.replaceAll(";, ", ",");
 
@@ -89,19 +87,14 @@ public class ScoringPersonData {
         String[] loan_products_splited = loan_products.split(";");
 
         String best_product_id = "";
-        Double product_persent = 0.0;
+        Double product_persent = 10000.0;
 
         for (int i = 0;  i < loan_products_splited.length; i++){
             String[] loan_products_args = loan_products_splited[i].split(",");
-            System.out.println(Arrays.toString(loan_products_args));
             if (Double.parseDouble(loan_products_args[1]) < Double.parseDouble(client_splited[13]) &&
 
                     Double.parseDouble(loan_products_args[2]) > Double.parseDouble(client_splited[13]) &&
-
                     Double.parseDouble(loan_products_args[3]) < Double.parseDouble(client_splited[14]) &&
-                    Double.parseDouble(loan_products_args[4]) > Double.parseDouble(client_splited[14]) &&
-                    /*
-                     */
                     Double.parseDouble(loan_products_args[7]) < total_score &&
 
                     (loan_products_args[8].equals(client_splited[15]) || loan_products_args[8].equals("unknow") &&
@@ -111,26 +104,24 @@ public class ScoringPersonData {
                 product_persent = ((Double.parseDouble(loan_products_args[4]) - Double.parseDouble(loan_products_args[3]))
                         / (0.05 * total_score)) + Double.parseDouble(loan_products_args[3]);
             }
-
         }
 
-        System.out.println(client);
-        System.out.println("____________________________");
-        System.out.println(loan_products);
-        System.out.println("____________________________");
+        fin_flows = fin_flows.substring(1, fin_flows.length() - 1);
+        String[] fin_flows_args = fin_flows.split(",");
 
+        String result = "";
 
-        System.out.println(total_score);
-        if (total_score > 30.0) {
-            System.out.println(client_splited[2] + " " + client_splited[1] + " " + client_splited[3]
+        if (!product_persent.equals(10000.0) && total_score > 30.0 && (Double.parseDouble(fin_flows_args[1]) - Double.parseDouble(fin_flows_args[2])
+            - Double.parseDouble(fin_flows_args[3])) > Double.parseDouble(client_splited[13])) {
+            result = client_splited[2] + " " + client_splited[1] + " " + client_splited[3]
                     + " с номером = " + client_splited[0] + " Рекомендуется к кредитованию кредитом с id = " + best_product_id
-            + " по ставке: " + String.format("%.3f",product_persent));
+                    + " по ставке: " + String.format("%.3f",product_persent) + " На сумму " + client_splited[13];
         }
         else {
-            System.out.println(client_splited[2] + " " + client_splited[1] + " " + client_splited[3]
-                    + " с номером = " + client_splited[0] + " Не рекомендуется к кредитованию");
+            result = client_splited[2] + " " + client_splited[1] + " " + client_splited[3]
+                    + " с номером = " + client_splited[0] + " Не рекомендуется к кредитованию";
         }
 
-        return null;
+        return result;
     }
 }

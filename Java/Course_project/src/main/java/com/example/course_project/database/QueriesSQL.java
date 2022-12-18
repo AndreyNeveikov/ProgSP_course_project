@@ -211,6 +211,42 @@ public class QueriesSQL {
         return productList;
     }
 
+    public static ArrayList<BankFinansialFlows> getFinFlows() throws SQLException {
+        ArrayList<BankFinansialFlows> finFlow = new ArrayList<>();
+
+        ResultSet resSet = statement.executeQuery("SELECT * FROM bank_financial_flows");
+
+        String fin_date;
+        double bank_own_funds;
+        double bank_borrowed_funds;
+        double bank_reserve_funds;
+        double bank_refinancing_rate;
+        double central_bank_refinancing_rate;
+        double bank_monthly_expected_income;
+        double bank_monthly_expected_costs;
+
+        while (resSet.next()) {
+
+            fin_date = resSet.getString("fin_date");
+            bank_own_funds = resSet.getDouble("bank_own_funds");
+            bank_borrowed_funds = resSet.getDouble("bank_borrowed_funds");
+            bank_reserve_funds = resSet.getDouble("bank_reserve_funds");
+            bank_refinancing_rate = resSet.getDouble("bank_refinancing_rate");
+            central_bank_refinancing_rate = resSet.getDouble("central_bank_refinancing_rate");
+            bank_monthly_expected_income = resSet.getDouble("bank_monthly_expected_income");
+            bank_monthly_expected_costs = resSet.getDouble("bank_monthly_expected_costs");
+
+            BankFinansialFlows finData = new BankFinansialFlows(fin_date, bank_own_funds, bank_borrowed_funds,
+                    bank_reserve_funds, bank_refinancing_rate, central_bank_refinancing_rate,
+                    bank_monthly_expected_income, bank_monthly_expected_costs);
+
+            finFlow.add(finData);
+        }
+        System.out.println(finFlow);
+
+        return finFlow;
+    }
+
     public static String getUsers(String login, String password) throws SQLException {
         String user_status = "0";
 
