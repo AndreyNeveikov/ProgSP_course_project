@@ -63,7 +63,7 @@ public class DatabaseDeployment {
                 "client_risk_rate                     double not null)");
 
         statement.executeUpdate("CREATE TABLE loan_product (" +
-                "product_id                       int         primary key," +
+                "product_id                       int         auto_increment primary key," +
                 "product_minimum_amount           double      not null, " +
                 "product_maximum_amount           double      not null," +
                 "product_minimum_percent          double      not null," +

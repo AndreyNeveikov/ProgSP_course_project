@@ -27,6 +27,9 @@ public class ManagerMenuController {
     private Button credit_product_editor;
 
     @FXML
+    private Button btnEditCredit;
+
+    @FXML
     private TextField bank_own_funds;
 
     @FXML
@@ -46,6 +49,33 @@ public class ManagerMenuController {
 
     @FXML
     private TextField bank_borrowed_funds;
+
+    @FXML
+    private TextField product_id;
+
+    @FXML
+    private TextField product_minimum_duration;
+
+    @FXML
+    private TextField product_maximum_duration;
+
+    @FXML
+    private TextField product_minimum_rating_access;
+
+    @FXML
+    private TextField product_mandatory_goal;
+
+    @FXML
+    private TextField product_maximum_percent;
+
+    @FXML
+    private TextField product_minimum_percent;
+
+    @FXML
+    private TextField product_maximum_amount;
+
+    @FXML
+    private TextField product_minimum_amount;
 
     @FXML
     ListView<String> loan_products = new ListView<String>();
@@ -100,6 +130,84 @@ public class ManagerMenuController {
     }
 
     @FXML
+    protected void onDeleteCreditButtonClick() {
+        if (!product_id.getText().trim().equals("")) {
+            ClientCommonFuctions.clientServerDialog(status, 4, product_id.getText().trim());
+        }
+    }
+
+    @FXML
+    protected void onFindCreditButtonClick() {
+        if (!product_id.getText().trim().equals("")) {
+            String product = ClientCommonFuctions.clientServerDialog(status, 5,
+                    product_id.getText().trim());
+
+            product = product.substring(1, product.length() - 1);
+
+            String[] splited_info = product.split(",");
+
+            if (splited_info[0].equals("")) {
+                product_id.setText("");
+                product_minimum_amount.setText("");
+                product_maximum_amount.setText("");
+                product_minimum_percent.setText("");
+                product_maximum_percent.setText("");
+                product_minimum_duration.setText("");
+                product_maximum_duration.setText("");
+                product_minimum_rating_access.setText("");
+                product_mandatory_goal.setText("");
+            }
+            else {
+                product_id.setText(splited_info[0]);
+                product_minimum_amount.setText(splited_info[1]);
+                product_maximum_amount.setText(splited_info[2]);
+                product_minimum_percent.setText(splited_info[3]);
+                product_maximum_percent.setText(splited_info[4]);
+                product_minimum_duration.setText(splited_info[5]);
+                product_maximum_duration.setText(splited_info[6]);
+                product_minimum_rating_access.setText(splited_info[7]);
+                product_mandatory_goal.setText(splited_info[8]);
+            }
+
+
+        }
+
+    }
+
+    @FXML
+    protected void onEditCreditProductsButtonClick() {
+        btnEditCredit.setOnAction(event -> {
+            btnEditCredit.getScene().getWindow().hide();
+
+            try {
+                ClientCommonFuctions.openNewWindow("lvl2_credit_editor.fxml", (Stage) btnEditCredit.getScene().getWindow());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+    }
+
+    @FXML
+    protected void onAddButtonClick() {
+        if (!product_minimum_amount.getText().equals("") &&
+                !product_maximum_amount.getText().equals("") &&
+                !product_minimum_percent.getText().equals("") &&
+                !product_maximum_percent.getText().equals("") &&
+                !product_minimum_duration.getText().equals("") &&
+                !product_maximum_duration.getText().equals("") &&
+                !product_minimum_rating_access.getText().equals("") &&
+                !product_mandatory_goal.getText().equals("")) {
+
+            ClientCommonFuctions.clientServerDialog(status, 3,
+                    product_minimum_amount.getText().trim() + "/" + product_maximum_amount.getText().trim() + "/" +
+                            product_minimum_percent.getText().trim() + "/" + product_maximum_percent.getText().trim() + "/" +
+                            product_minimum_duration.getText().trim() + "/" + product_maximum_duration.getText().trim() + "/" +
+                            product_minimum_rating_access.getText().trim() + "/" + product_mandatory_goal.getText().trim() + "/");
+        }
+    }
+
+    @FXML
     protected void onRefreshCreditProductsButtonClick() {
         loan_products.getItems().clear();
         String loan_products_list = ClientCommonFuctions.clientServerDialog(status, 2,
@@ -118,11 +226,6 @@ public class ManagerMenuController {
         for (int i = 0;  i < loan_products_splited.length; i++){
             loan_products.getItems().add(loan_products_splited[i]);
         }
-    }
-
-    @FXML
-    protected void onEditCreditProductsButtonClick() {
-
     }
 
     @FXML

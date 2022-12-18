@@ -2,6 +2,7 @@ package com.example.course_project.database;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class QueriesSQL {
 
@@ -10,8 +11,6 @@ public class QueriesSQL {
     public static final String URL = "jdbc:mysql://localhost:3306/mysql";
     public static Statement statement;
     public static Connection connection;
-
-    public static final String SELECT_ALL_LOAN_PRODUCTS_QUERY = "SELECT * FROM loan_product";
 
     public static final String SELECT_ALL_CLIENTS_QUERY = "SELECT * FROM clients_personal_data";
 
@@ -149,18 +148,6 @@ public class QueriesSQL {
         return queryClientsCommon(SELECT_ALL_CLIENTS_QUERY);
     }
 
-    public static void deleteClient(int id) throws SQLException {
-
-        statement.executeUpdate("USE bank_credit_policy");
-        statement.executeUpdate("DELETE FROM clients_personal_data WHERE client_id='" + id + "';");
-    }
-
-    public static ArrayList<Clients> findClient(String passport_id) throws SQLException {
-
-        return queryClientsCommon("SELECT * FROM clients_personal_data " +
-                "WHERE client_passport_personal_number='" + passport_id + "';");
-    }
-
     public static void addClient(String args) throws SQLException {
 
         String[] client_data = args.split("/");
@@ -173,10 +160,48 @@ public class QueriesSQL {
                 "', '" + client_data[4] + "', '" + client_data[5] + "', '" + client_data[6] + "', '" + client_data[7] + "');");
     }
 
-    public static ArrayList<LoanProducts> getLoanProducts() throws SQLException {
+    public static void deleteClient(int id) throws SQLException {
+
+        statement.executeUpdate("USE bank_credit_policy");
+        statement.executeUpdate("DELETE FROM clients_personal_data WHERE client_id='" + id + "';");
+    }
+
+    public static ArrayList<Clients> findClient(String passport_id) throws SQLException {
+
+        return queryClientsCommon("SELECT * FROM clients_personal_data " +
+                "WHERE client_passport_personal_number='" + passport_id + "';");
+
+    }
+
+    public static void addCredit(String args) throws SQLException {
+
+        String[] credit_data = args.split("/");
+        System.out.println(Arrays.toString(credit_data));
+
+        statement.executeUpdate("USE bank_credit_policy");
+        statement.executeUpdate("INSERT INTO loan_product (product_minimum_amount, product_maximum_amount, product_minimum_percent," +
+                " product_maximum_percent, product_minimum_duration, product_maximum_duration, product_minimum_rating_access," +
+                " product_mandatory_goal)" +
+                "VALUES ('" + credit_data[0] + "', '" + credit_data[1] + "', '" + credit_data[2] + "', '" + credit_data[3] +
+                "', '" + credit_data[4] + "', '" + credit_data[5] + "', '" + credit_data[6] + "', '" + credit_data[7] + "');");
+    }
+
+    public static void deleteCredit(int id) throws SQLException {
+
+        statement.executeUpdate("USE bank_credit_policy");
+        statement.executeUpdate("DELETE FROM loan_product WHERE product_id='" + id + "';");
+    }
+
+    public static ArrayList<LoanProducts> findCredit(String product_id) throws SQLException {
+
+        return queryCreditsCommon("SELECT * FROM loan_product " +
+                "WHERE product_id='" + product_id + "';");
+    }
+
+    public static ArrayList<LoanProducts> queryCreditsCommon(String query) throws SQLException {
         ArrayList<LoanProducts> productList = new ArrayList<>();
 
-        ResultSet resSet = statement.executeQuery(SELECT_ALL_LOAN_PRODUCTS_QUERY);
+        ResultSet resSet = statement.executeQuery(query);
 
         int product_id;
         double product_minimum_amount;
@@ -209,6 +234,10 @@ public class QueriesSQL {
         System.out.println(productList);
 
         return productList;
+    }
+
+    public static ArrayList<LoanProducts> getLoanProducts() throws SQLException {
+        return queryCreditsCommon("SELECT * FROM loan_product;");
     }
 
     public static ArrayList<BankFinansialFlows> getFinFlows() throws SQLException {

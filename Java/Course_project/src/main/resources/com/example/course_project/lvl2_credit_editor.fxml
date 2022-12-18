@@ -6,75 +6,75 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="748.0" style="-fx-background-color: #3d6eff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.course_project.SalerMenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="748.0" style="-fx-background-color: #3d6eff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.course_project.ManagerMenuController">
     <children>
         <AnchorPane layoutY="81.0" prefHeight="435.0" prefWidth="748.0" style="-fx-background-color: #e1ebff;">
             <children>
-                <Button id="client_editor" fx:id="client_editor" layoutX="23.0" layoutY="352.0" mnemonicParsing="false" onAction="#onClientEditorButtonClick" prefHeight="50.0" prefWidth="162.0" style="-fx-background-color: #3d6eff;" text="Назад">
+                <Button id="credit_product_editor" fx:id="credit_product_editor" layoutX="23.0" layoutY="352.0" mnemonicParsing="false" onAction="#onCreditEditorButtonClick" prefHeight="50.0" prefWidth="162.0" style="-fx-background-color: #3d6eff;" text="Назад">
                     <font>
                         <Font name="Centaur" size="24.0" />
                     </font>
                 </Button>
-                <Button id="delete" fx:id="btnDeleteClient" layoutX="565.0" layoutY="352.0" mnemonicParsing="false" onAction="#onDeleteClientButtonClick" prefHeight="50.0" prefWidth="162.0" style="-fx-background-color: #3d6eff;" text="Удалить">
+                <Button id="delete" fx:id="btnDeleteCredit" layoutX="565.0" layoutY="352.0" mnemonicParsing="false" onAction="#onDeleteCreditButtonClick" prefHeight="50.0" prefWidth="162.0" style="-fx-background-color: #3d6eff;" text="Удалить">
                     <font>
                         <Font name="Centaur" size="24.0" />
                     </font>
                 </Button>
-                <TextField id="client_id" fx:id="client_id" layoutX="280.0" layoutY="27.0" prefHeight="38.0" prefWidth="224.0" />
-                <TextField id="client_passport_personal_number" fx:id="client_passport_personal_number" layoutX="504.0" layoutY="97.0" prefHeight="38.0" prefWidth="224.0" />
-                <TextField id="client_passport_series" fx:id="client_passport_series" layoutX="504.0" layoutY="160.0" prefHeight="38.0" prefWidth="224.0" />
-                <TextField id="client_passport_number" fx:id="client_passport_number" layoutX="505.0" layoutY="218.0" prefHeight="38.0" prefWidth="224.0" />
-                <TextField id="client_status" fx:id="client_status" layoutX="505.0" layoutY="276.0" prefHeight="38.0" prefWidth="224.0" />
-                <TextField id="client_date_of_birth" fx:id="client_date_of_birth" layoutX="132.0" layoutY="276.0" prefHeight="38.0" prefWidth="224.0" />
-                <TextField id="client_patronymic" fx:id="client_patronymic" layoutX="131.0" layoutY="218.0" prefHeight="38.0" prefWidth="224.0" />
-                <TextField id="client_surname" fx:id="client_surname" layoutX="130.0" layoutY="160.0" prefHeight="38.0" prefWidth="224.0" />
-                <TextField id="client_name" fx:id="client_name" layoutX="130.0" layoutY="97.0" prefHeight="38.0" prefWidth="224.0" />
+                <TextField id="product_id" fx:id="product_id" layoutX="280.0" layoutY="27.0" prefHeight="38.0" prefWidth="224.0" />
+                <TextField id="product_minimum_duration" fx:id="product_minimum_duration" layoutX="504.0" layoutY="97.0" prefHeight="38.0" prefWidth="224.0" />
+                <TextField id="product_maximum_duration" fx:id="product_maximum_duration" layoutX="504.0" layoutY="160.0" prefHeight="38.0" prefWidth="224.0" />
+                <TextField id="product_minimum_rating_access" fx:id="product_minimum_rating_access" layoutX="505.0" layoutY="218.0" prefHeight="38.0" prefWidth="224.0" />
+                <TextField id="product_mandatory_goal" fx:id="product_mandatory_goal" layoutX="505.0" layoutY="276.0" prefHeight="38.0" prefWidth="224.0" />
+                <TextField id="product_maximum_percent" fx:id="product_maximum_percent" layoutX="132.0" layoutY="276.0" prefHeight="38.0" prefWidth="224.0" />
+                <TextField id="product_minimum_percent" fx:id="product_minimum_percent" layoutX="131.0" layoutY="218.0" prefHeight="38.0" prefWidth="224.0" />
+                <TextField id="product_maximum_amount" fx:id="product_maximum_amount" layoutX="130.0" layoutY="160.0" prefHeight="38.0" prefWidth="224.0" />
+                <TextField id="product_minimum_amount" fx:id="product_minimum_amount" layoutX="130.0" layoutY="97.0" prefHeight="38.0" prefWidth="224.0" />
                 <Text layoutX="237.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID">
                     <font>
                         <Font name="Comic Sans MS Bold" size="18.0" />
                     </font>
                 </Text>
-                <Text layoutX="69.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Имя">
+                <Text layoutX="11.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="мин. размер">
                     <font>
                         <Font name="Comic Sans MS Bold" size="18.0" />
                     </font>
                 </Text>
-                <Text layoutX="28.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Фамилия">
+                <Text layoutX="7.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="макс. размер">
                     <font>
                         <Font name="Comic Sans MS Bold" size="18.0" />
                     </font>
                 </Text>
-                <Text layoutX="25.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Отчество">
+                <Text layoutX="56.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="мин. %">
                     <font>
                         <Font name="Comic Sans MS Bold" size="18.0" />
                     </font>
                 </Text>
-                <Text layoutX="21.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="   Дата рождения" wrappingWidth="91.1443481445312">
+                <Text layoutX="52.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="макс. %" wrappingWidth="73.54434204101557">
                     <font>
                         <Font name="Comic Sans MS Bold" size="18.0" />
                     </font>
                 </Text>
-                <Text layoutX="374.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID паспорта">
+                <Text layoutX="380.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="мин. период">
                     <font>
                         <Font name="Comic Sans MS Bold" size="18.0" />
                     </font>
                 </Text>
-                <Text layoutX="393.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="  Серия паспорта" wrappingWidth="91.1443481445312">
+                <Text layoutX="372.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="макс. период" wrappingWidth="123.60369873046875">
                     <font>
                         <Font name="Comic Sans MS Bold" size="18.0" />
                     </font>
                 </Text>
-                <Text layoutX="374.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="№ паспорта">
+                <Text layoutX="374.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="мин. рейтинг">
                     <font>
                         <Font name="Comic Sans MS Bold" size="18.0" />
                     </font>
                 </Text>
-                <Text layoutX="426.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Статус">
+                <Text layoutX="452.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" text="цель">
                     <font>
                         <Font name="Comic Sans MS Bold" size="18.0" />
                     </font>
                 </Text>
-                <Button id="find" fx:id="btnFind" layoutX="384.0" layoutY="352.0" mnemonicParsing="false" onAction="#onFindClientButtonClick" prefHeight="50.0" prefWidth="162.0" style="-fx-background-color: #3d6eff;" text="Найти">
+                <Button id="find" fx:id="btnFind" layoutX="384.0" layoutY="352.0" mnemonicParsing="false" onAction="#onFindCreditButtonClick" prefHeight="50.0" prefWidth="162.0" style="-fx-background-color: #3d6eff;" text="Найти">
                     <font>
                         <Font name="Centaur" size="24.0" />
                     </font>
@@ -85,7 +85,7 @@
                     </font>
                 </Button>
             </children></AnchorPane>
-        <Text layoutX="273.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Клиенты банка">
+        <Text layoutX="233.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Кредитные продукты">
             <font>
                 <Font name="Comic Sans MS Bold" size="27.0" />
             </font>

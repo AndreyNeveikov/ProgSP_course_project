@@ -85,10 +85,16 @@ public class ClientHandler implements Runnable {
                                 out.writeUTF(loan_products_list);
                                 break;
                             case "3":
+                                QueriesSQL.addCredit(switch_params[2]);
+                                out.writeUTF("Added");
                                 break;
                             case "4":
+                                QueriesSQL.deleteCredit(Integer.parseInt(switch_params[2]));
+                                out.writeUTF("Deleted");
                                 break;
                             case "5":
+                                String credit = String.valueOf(findCredit((switch_params[2])));
+                                out.writeUTF(credit);
                                 break;
                         }
                         break;
