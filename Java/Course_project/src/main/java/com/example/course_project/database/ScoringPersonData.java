@@ -122,6 +122,8 @@ public class ScoringPersonData {
                     + " с номером = " + client_splited[0] + " Не рекомендуется к кредитованию";
         }
 
+        ScoringLogger.getScoringLogger().addScoringLogInfo(result);
+
         return result;
     }
 }

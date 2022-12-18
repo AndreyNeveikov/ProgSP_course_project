@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="748.0" style="-fx-background-color: #3d6eff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.course_project.ManagerMenuController">
+    <children>
+        <AnchorPane layoutY="81.0" prefHeight="435.0" prefWidth="748.0" style="-fx-background-color: #e1ebff;">
+            <children>
+                <Button id="move_back" fx:id="move_back" layoutX="14.0" layoutY="32.0" mnemonicParsing="false" onAction="#onMoveBackButtonClick" prefHeight="50.0" prefWidth="162.0" style="-fx-background-color: #3d6eff;" text="Назад">
+                    <font>
+                        <Font name="Centaur" size="24.0" />
+                    </font>
+                </Button>
+                <ListView id="scoring_results" fx:id="scoring_results" layoutX="198.0" layoutY="32.0" prefHeight="256.0" prefWidth="535.0" />
+                <Button id="refresh" fx:id="btnRefresh" layoutX="14.0" layoutY="121.0" mnemonicParsing="false" onAction="#onRefreshScoringResultsButtonClick" prefHeight="50.0" prefWidth="162.0" style="-fx-background-color: #3d6eff;" text="Обновить">
+                    <font>
+                        <Font name="Centaur" size="24.0" />
+                    </font>
+                </Button>
+            <TextField id="result_id_input" fx:id="result_id_input" layoutX="221.0" layoutY="333.0" prefHeight="50.0" prefWidth="306.0" promptText="Введите номер результата">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <Button id="confirm" fx:id="btnСonfirm" layoutX="14.0" layoutY="332.0" mnemonicParsing="false" onAction="#onConfirmScoringResultsButtonClick" prefHeight="50.0" prefWidth="184.0" style="-fx-background-color: #3d6eff;" text="Подтвердить">
+               <font>
+                  <Font name="Centaur" size="24.0" />
+               </font>
+            </Button>
+            <Button id="cancel" fx:id="btnCancel" layoutX="548.0" layoutY="333.0" mnemonicParsing="false" onAction="#onCancelScoringResultsButtonClick" prefHeight="50.0" prefWidth="184.0" style="-fx-background-color: #3d6eff;" text="Отменить">
+               <font>
+                  <Font name="Centaur" size="24.0" />
+               </font>
+            </Button>
+            </children></AnchorPane>
+        <Text layoutX="235.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Результаты скоринга">
+            <font>
+                <Font name="Comic Sans MS Bold" size="27.0" />
+            </font>
+        </Text>
+    </children>
+</AnchorPane>

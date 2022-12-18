@@ -24,7 +24,6 @@ public class ClientCommonFuctions {
         Parent root = (Parent) fxmlLoader.load();
         stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setTitle("Другая форма");
         stage.setScene(new Scene(root));
         stage.show();
     }
