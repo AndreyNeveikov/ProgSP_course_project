@@ -15,7 +15,6 @@ public class QueriesSQL {
 
     public static final String SELECT_ALL_CLIENTS_QUERY = "SELECT * FROM clients_personal_data";
 
-
     static {
         try {
             connection = DriverManager.getConnection(URL, USER_NAME, PASSWORD);
@@ -37,6 +36,74 @@ public class QueriesSQL {
     public static void disconnect() throws SQLException {
         statement.close();
         connection.close();
+    }
+
+    public static String getClientScoringData(String credit_order) throws SQLException {
+
+        String[] credit_order_data = credit_order.split("/");
+
+        ResultSet resSetClientPers = statement.executeQuery("SELECT client_id FROM clients_personal_data " +
+                "WHERE client_passport_personal_number='" + credit_order_data[0] + "';");
+
+        int client_found_id = 0;
+        while(resSetClientPers.next()){
+            client_found_id = resSetClientPers.getInt("client_id");
+        }
+        System.out.println(client_found_id);
+
+        ResultSet resSetClientFin = statement.executeQuery("SELECT client_total_debt, client_monthly_income, " +
+                "client_monthly_loan_payment, client_number_of_repaid_loans, " +
+                " client_total_number_of_loans, client_value_of_collateral, client_number_of_overdue_payments, " +
+                " clients_personal_data.client_id, client_name, client_surname, client_patronymic, client_date_of_birth " +
+                "FROM fct_clients_financial_data " +
+                "INNER JOIN clients_personal_data " +
+                "ON clients_personal_data.client_id = fct_clients_financial_data.client_id " +
+                "WHERE clients_personal_data.client_id='" + client_found_id + "'" +
+                "ORDER BY client_loaned_date ASC " +
+                "LIMIT 1;");
+
+
+        double client_total_debt;
+        double client_monthly_income;
+        double client_monthly_loan_payment;
+        int client_number_of_repaid_loans;
+        int client_total_number_of_loans;
+        double client_value_of_collateral;
+        int client_number_of_overdue_payments;
+        int client_id;
+        String client_name;
+        String client_surname;
+        String client_patronymic;
+        String client_date_of_birth;
+
+        ArrayList<ScoringPersonData> scoringDataList = new ArrayList<>();
+
+        while (resSetClientFin.next()) {
+
+            client_total_debt = resSetClientFin.getDouble("client_total_debt");
+            client_monthly_income = resSetClientFin.getDouble("client_monthly_income");
+            client_monthly_loan_payment = resSetClientFin.getDouble("client_monthly_loan_payment");
+            client_number_of_repaid_loans = resSetClientFin.getInt("client_number_of_repaid_loans");
+            client_total_number_of_loans = resSetClientFin.getInt("client_total_number_of_loans");
+            client_value_of_collateral = resSetClientFin.getDouble("client_value_of_collateral");
+            client_number_of_overdue_payments = resSetClientFin.getInt("client_number_of_overdue_payments");
+            client_id = resSetClientFin.getInt("clients_personal_data.client_id");
+            client_name = resSetClientFin.getString("client_name");
+            client_surname = resSetClientFin.getString("client_surname");
+            client_patronymic = resSetClientFin.getString("client_patronymic");
+            client_date_of_birth = String.valueOf(resSetClientFin.getDate("client_date_of_birth"));
+
+            ScoringPersonData scoringPersonData = new ScoringPersonData(client_id, client_name, client_surname,
+                    client_patronymic, client_date_of_birth, client_total_debt, client_monthly_income,
+                    client_monthly_loan_payment, client_number_of_repaid_loans, client_total_number_of_loans,
+                    client_value_of_collateral, client_number_of_overdue_payments);
+
+            scoringDataList.add(scoringPersonData);
+        }
+        System.out.println(scoringDataList);
+        return String.valueOf(scoringDataList).substring(1, String.valueOf(scoringDataList).length() - 1)
+                + "," + credit_order_data[1] + "," + credit_order_data[2] + "," +
+                credit_order_data[3] + "," + credit_order_data[4];
     }
 
     public static ArrayList<Clients> queryClientsCommon(String query) throws SQLException {
@@ -96,9 +163,8 @@ public class QueriesSQL {
 
     public static void addClient(String args) throws SQLException {
 
-        System.out.println(args);
         String[] client_data = args.split("/");
-        System.out.println(client_data[2]);
+
         statement.executeUpdate("USE bank_credit_policy");
         statement.executeUpdate("INSERT INTO clients_personal_data (" +
                 "client_name, client_surname, client_patronymic, client_date_of_birth, client_passport_personal_number," +

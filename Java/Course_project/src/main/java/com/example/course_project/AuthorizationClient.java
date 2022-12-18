@@ -4,11 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.Socket;
-import java.net.UnknownHostException;
 
 public class AuthorizationClient {
     @FXML
@@ -46,9 +42,6 @@ public class AuthorizationClient {
             case "0":
                 ClientCommonFuctions.openNewWindow("authorization.fxml",
                         (Stage) enter_the_application.getScene().getWindow());
-                break;
-            default:
-                System.out.println(response);
                 break;
         }
 

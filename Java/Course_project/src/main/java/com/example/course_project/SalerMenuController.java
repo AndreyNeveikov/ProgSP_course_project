@@ -19,7 +19,13 @@ public class SalerMenuController {
     private Button help;
 
     @FXML
+    private Button exit;
+
+    @FXML
     private Button client_editor;
+
+    @FXML
+    private Button start_scoring;
 
     @FXML
     private Button btnEditClient;
@@ -38,6 +44,15 @@ public class SalerMenuController {
 
     @FXML
     private TextField client_status;
+
+    @FXML
+    private TextField client_monthly_income;
+    @FXML
+    private TextField client_credit_order;
+    @FXML
+    private TextField client_max_persent;
+    @FXML
+    private TextField client_credit_target;
 
     @FXML
     private TextField client_date_of_birth;
@@ -61,12 +76,39 @@ public class SalerMenuController {
 
     @FXML
     protected void onExitButtonClick() {
+        exit.setOnAction(event -> {
+            exit.getScene().getWindow().hide();
+            System.exit(0);
+        });
+    }
 
+    @FXML
+    protected void onScoringButtonClick(){
+
+        if (!client_passport_personal_number.getText().equals("") &&
+                !client_monthly_income.getText().equals("") &&
+                !client_credit_order.getText().equals("") &&
+                !client_max_persent.getText().equals("") &&
+                !client_credit_target.getText().equals("")) {
+
+            ClientCommonFuctions.clientServerDialog(status, 6,
+                    client_passport_personal_number.getText().trim() + "/" + client_monthly_income.getText().trim() + "/" +
+                            client_credit_order.getText().trim() + "/" + client_max_persent.getText().trim() + "/" +
+                            client_credit_target.getText().trim());
+        }
     }
 
     @FXML
     protected void onStartScoringButtonClick() {
+        start_scoring.setOnAction(event -> {
+            start_scoring.getScene().getWindow().hide();
 
+            try {
+                ClientCommonFuctions.openNewWindow("saler_scoring_window.fxml", (Stage) start_scoring.getScene().getWindow());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     @FXML
@@ -214,7 +256,6 @@ public class SalerMenuController {
 
     @FXML
     protected void onMoveBackButtonClick() {
-
         move_back.setOnAction(event -> {
             move_back.getScene().getWindow().hide();
 

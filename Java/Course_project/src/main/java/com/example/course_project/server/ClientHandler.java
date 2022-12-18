@@ -2,6 +2,7 @@ package com.example.course_project.server;
 
 
 import com.example.course_project.database.QueriesSQL;
+import com.example.course_project.database.ScoringPersonData;
 
 
 import java.io.DataInputStream;
@@ -69,6 +70,9 @@ public class ClientHandler implements Runnable {
                             case "5":
                                 QueriesSQL.addClient(switch_params[2]);
                                 out.writeUTF("Added");
+                            case "6":
+                                ScoringPersonData.getScoring(switch_params[2]);
+                                out.writeUTF("Scored");
                         }
                         break;
                     case "3":
