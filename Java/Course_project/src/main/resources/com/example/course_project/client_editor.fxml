@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="748.0" style="-fx-background-color: #3d6eff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.course_project.SalerMenuController">
     <children>
-        <AnchorPane layoutY="81.0" prefHeight="435.0" prefWidth="748.0" style="-fx-background-color: #e1ebff;">
+        <AnchorPane layoutY="82.0" prefHeight="435.0" prefWidth="748.0" style="-fx-background-color: #e1ebff;">
             <children>
                 <Button id="move_back" fx:id="move_back" layoutX="14.0" layoutY="370.0" mnemonicParsing="false" onAction="#onMoveBackButtonClick" prefHeight="50.0" prefWidth="162.0" style="-fx-background-color: #3d6eff;" text="Назад">
                     <font>
@@ -21,17 +21,7 @@
                         <Font name="Centaur" size="24.0" />
                     </font>
                 </Button>
-            <Button id="add" fx:id="btnAdd" layoutX="14.0" layoutY="82.0" mnemonicParsing="false" onAction="#onAddButtonClick" prefHeight="50.0" prefWidth="162.0" style="-fx-background-color: #3d6eff;" text="Добавить">
-               <font>
-                  <Font name="Centaur" size="24.0" />
-               </font>
-            </Button>
-            <Button id="edit" fx:id="btnEditClient" layoutX="14.0" layoutY="150.0" mnemonicParsing="false" onAction="#onEditClientButtonClick" prefHeight="50.0" prefWidth="162.0" style="-fx-background-color: #3d6eff;" text="Изменить">
-               <font>
-                  <Font name="Centaur" size="24.0" />
-               </font>
-            </Button>
-            <Button id="delete" fx:id="btnDeleteClient" layoutX="14.0" layoutY="218.0" mnemonicParsing="false" onAction="#onDeleteClientButtonClick" prefHeight="50.0" prefWidth="162.0" style="-fx-background-color: #3d6eff;" text="Удалить">
+            <Button id="edit" fx:id="btnEditClient" layoutX="14.0" layoutY="82.0" mnemonicParsing="false" onAction="#onEditClientButtonClick" prefHeight="50.0" prefWidth="162.0" style="-fx-background-color: #3d6eff;" text="Изменить">
                <font>
                   <Font name="Centaur" size="24.0" />
                </font>

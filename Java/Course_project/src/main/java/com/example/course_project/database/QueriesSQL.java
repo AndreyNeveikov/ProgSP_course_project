@@ -39,10 +39,10 @@ public class QueriesSQL {
         connection.close();
     }
 
-    public static ArrayList<Clients> getClients() throws SQLException {
+    public static ArrayList<Clients> queryClientsCommon(String query) throws SQLException {
         ArrayList<Clients> clientsList = new ArrayList<>();
 
-        ResultSet resSet = statement.executeQuery(SELECT_ALL_CLIENTS_QUERY);
+        ResultSet resSet = statement.executeQuery(query);
 
         int client_id;
         String client_name;
@@ -78,10 +78,33 @@ public class QueriesSQL {
         return clientsList;
     }
 
+    public static ArrayList<Clients> getClients() throws SQLException {
+        return queryClientsCommon(SELECT_ALL_CLIENTS_QUERY);
+    }
+
     public static void deleteClient(int id) throws SQLException {
 
         statement.executeUpdate("USE bank_credit_policy");
-        statement.executeUpdate("DELETE FROM clients_personal_data WHERE client_id='2';");
+        statement.executeUpdate("DELETE FROM clients_personal_data WHERE client_id='" + id + "';");
+    }
+
+    public static ArrayList<Clients> findClient(String passport_id) throws SQLException {
+
+        return queryClientsCommon("SELECT * FROM clients_personal_data " +
+                "WHERE client_passport_personal_number='" + passport_id + "';");
+    }
+
+    public static void addClient(String args) throws SQLException {
+
+        System.out.println(args);
+        String[] client_data = args.split("/");
+        System.out.println(client_data[2]);
+        statement.executeUpdate("USE bank_credit_policy");
+        statement.executeUpdate("INSERT INTO clients_personal_data (" +
+                "client_name, client_surname, client_patronymic, client_date_of_birth, client_passport_personal_number," +
+                "client_passport_series, client_passport_number, client_status)" +
+                "VALUES ('" + client_data[0] + "', '" + client_data[1] + "', '" + client_data[2] + "', '" + client_data[3] +
+                "', '" + client_data[4] + "', '" + client_data[5] + "', '" + client_data[6] + "', '" + client_data[7] + "');");
     }
 
     public static ArrayList<LoanProducts> getLoanProducts() throws SQLException {

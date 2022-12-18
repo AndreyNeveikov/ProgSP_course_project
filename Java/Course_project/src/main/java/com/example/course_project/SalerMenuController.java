@@ -1,21 +1,11 @@
 package com.example.course_project;
 
-import com.example.course_project.database.QueriesSQL;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.*;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Objects;
+
 
 public class SalerMenuController {
 
@@ -30,6 +20,36 @@ public class SalerMenuController {
 
     @FXML
     private Button client_editor;
+
+    @FXML
+    private Button btnEditClient;
+
+    @FXML
+    private TextField client_id;
+
+    @FXML
+    private TextField client_passport_personal_number;
+
+    @FXML
+    private TextField client_passport_series;
+
+    @FXML
+    private TextField client_passport_number;
+
+    @FXML
+    private TextField client_status;
+
+    @FXML
+    private TextField client_date_of_birth;
+
+    @FXML
+    private TextField client_patronymic;
+
+    @FXML
+    private TextField client_surname;
+
+    @FXML
+    private TextField client_name;
 
     @FXML
     ListView<String> loan_products = new ListView<String>();
@@ -65,29 +85,88 @@ public class SalerMenuController {
 
     @FXML
     protected void onAddButtonClick() {
+        if (!client_name.getText().equals("") &&
+        !client_surname.getText().equals("") &&
+        !client_patronymic.getText().equals("") &&
+        !client_date_of_birth.getText().equals("") &&
+        !client_passport_personal_number.getText().equals("") &&
+        !client_passport_series.getText().equals("") &&
+        !client_passport_number.getText().equals("") &&
+        !client_status.getText().equals("")) {
 
+            ClientCommonFuctions.clientServerDialog(status, 5,
+                    client_name.getText().trim() + "/" + client_surname.getText().trim() + "/" +
+                            client_patronymic.getText().trim() + "/" + client_date_of_birth.getText().trim() + "/" +
+                            client_passport_personal_number.getText().trim() + "/" + client_passport_series.getText().trim() + "/" +
+                            client_passport_number.getText().trim() + "/" + client_status.getText().trim() + "/");
+        }
     }
 
 
     @FXML
     protected void onEditClientButtonClick() {
+        btnEditClient.setOnAction(event -> {
+            btnEditClient.getScene().getWindow().hide();
 
+            try {
+                ClientCommonFuctions.openNewWindow("lvl2_client_editor.fxml", (Stage) btnEditClient.getScene().getWindow());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+    }
+
+    @FXML
+    protected void onFindClientButtonClick() {
+        if (!client_passport_personal_number.getText().trim().equals("")) {
+            String client = ClientCommonFuctions.clientServerDialog(status, 4,
+                    client_passport_personal_number.getText().trim());
+
+            client = client.substring(1, client.length() - 1);
+
+            String[] splited_info = client.split(",");
+
+            if (splited_info[0].equals("")) {
+                client_id.setText("");
+                client_name.setText("");
+                client_surname.setText("");
+                client_patronymic.setText("");
+                client_date_of_birth.setText("");
+                client_passport_personal_number.setText("");
+                client_passport_series.setText("");
+                client_passport_number.setText("");
+                client_status.setText("");
+            }
+            else {
+                client_id.setText(splited_info[0]);
+                client_name.setText(splited_info[1]);
+                client_surname.setText(splited_info[2]);
+                client_patronymic.setText(splited_info[3]);
+                client_date_of_birth.setText(splited_info[4]);
+                client_passport_personal_number.setText(splited_info[5]);
+                client_passport_series.setText(splited_info[6]);
+                client_passport_number.setText(splited_info[7]);
+                client_status.setText(splited_info[8]);
+            }
+
+
+        }
     }
 
 
     @FXML
     protected void onDeleteClientButtonClick() {
-        bank_clients.getItems().clear();
-        ClientCommonFuctions.clientServerDialog(status, 3,
-                "1");
-
+        if (!client_id.getText().trim().equals("")) {
+            ClientCommonFuctions.clientServerDialog(status, 3, client_id.getText().trim());
+        }
     }
 
     @FXML
     protected void onRefreshClientButtonClick() {
         bank_clients.getItems().clear();
         String bank_clients_list = ClientCommonFuctions.clientServerDialog(status, 2,
-                "");
+                "0");
 
         bank_clients_list = bank_clients_list.substring(1, bank_clients_list.length() - 1);
         bank_clients_list = bank_clients_list.replaceAll(";, ", ";");

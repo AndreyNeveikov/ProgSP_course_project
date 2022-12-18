@@ -10,8 +10,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.sql.SQLException;
 
-import static com.example.course_project.database.QueriesSQL.getClients;
-import static com.example.course_project.database.QueriesSQL.getLoanProducts;
+import static com.example.course_project.database.QueriesSQL.*;
 
 public class ClientHandler implements Runnable {
 
@@ -63,6 +62,13 @@ public class ClientHandler implements Runnable {
                                 QueriesSQL.deleteClient(Integer.parseInt(switch_params[2]));
                                 out.writeUTF("Deleted");
                                 break;
+                            case "4":
+                                String client = String.valueOf(findClient((switch_params[2])));
+                                out.writeUTF(client);
+                                break;
+                            case "5":
+                                QueriesSQL.addClient(switch_params[2]);
+                                out.writeUTF("Added");
                         }
                         break;
                     case "3":
