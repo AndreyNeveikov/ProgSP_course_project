@@ -1,6 +1,7 @@
 package com.example.course_project.server;
 
 
+import com.example.course_project.database.GetScoringResult;
 import com.example.course_project.database.QueriesSQL;
 import com.example.course_project.database.ScoringPersonData;
 
@@ -95,6 +96,18 @@ public class ClientHandler implements Runnable {
                             case "5":
                                 String credit = String.valueOf(findCredit((switch_params[2])));
                                 out.writeUTF(credit);
+                                break;
+                            case "6":
+                                String scoring_results = GetScoringResult.readScoringData();
+                                out.writeUTF(scoring_results);
+                                break;
+                            case "7":
+                                String cancel_confirmation = GetScoringResult.CancelScoringResultsButtonClick(switch_params[2]);
+                                out.writeUTF(cancel_confirmation);
+                                break;
+                            case "8":
+                                String confirm_scoring = GetScoringResult.ConfirmScoringResultsButtonClick(switch_params[2]);
+                                out.writeUTF(confirm_scoring);
                                 break;
                         }
                         break;

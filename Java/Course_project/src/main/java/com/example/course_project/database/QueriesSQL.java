@@ -170,6 +170,22 @@ public class QueriesSQL {
 
     }
 
+    public static void ConfirmCredit(String args) throws SQLException {
+
+        String[] credit_data = args.split("/");
+        String prev_flow = String.valueOf(getFinFlows());
+        String[] prev_flow_data = prev_flow.split(",");
+
+        double new_flow_data = Double.parseDouble(prev_flow_data[1]) - Double.parseDouble(credit_data[2]);
+
+
+        statement.executeUpdate("USE bank_credit_policy");
+
+        statement.executeUpdate("UPDATE bank_financial_flows SET bank_own_funds = '"+ new_flow_data + "'" +
+                "WHERE fin_date = '2022-12-11';");
+
+    }
+
     public static void addCredit(String args) throws SQLException {
 
         String[] credit_data = args.split("/");

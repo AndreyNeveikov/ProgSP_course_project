@@ -1,10 +1,19 @@
 package com.example.course_project;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Side;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.AbstractMap;
+import java.util.ArrayList;
 
 
 public class ManagerMenuController {
@@ -28,6 +37,9 @@ public class ManagerMenuController {
 
     @FXML
     private Button btnEditCredit;
+
+    @FXML
+    private Button infographics;
 
     @FXML
     private TextField bank_own_funds;
@@ -78,7 +90,13 @@ public class ManagerMenuController {
     private TextField product_minimum_amount;
 
     @FXML
+    private TextField result_id_input;
+
+    @FXML
     ListView<String> loan_products = new ListView<String>();
+
+    @FXML
+    ListView<String> scoring_results = new ListView<String>();
 
     int status = 3;
 
@@ -258,9 +276,7 @@ public class ManagerMenuController {
     protected void onRefreshFinDataButtonClick() {
 
         String fin_flow_data = ClientCommonFuctions.clientServerDialog(status, 1, "0");
-
         fin_flow_data = fin_flow_data.substring(1, fin_flow_data.length() - 1);
-
         String[] splited_info = fin_flow_data.split(",");
 
         bank_own_funds.setText(splited_info[1]);
@@ -275,22 +291,49 @@ public class ManagerMenuController {
 
     @FXML
     protected void onInfographicsButtonClick() {
+        infographics.setOnAction(event -> {
+            infographics.getScene().getWindow().hide();
 
+            try {
+                ClientCommonFuctions.openNewWindow("manager_inforgaphics.fxml", (Stage) infographics.getScene().getWindow());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    @FXML
+    protected void onRefreshChartsButtonClick() {
+        PieChartSample pieChartSample = new PieChartSample();
+        pieChartSample.start(new Stage());
     }
 
     @FXML
     protected void onRefreshScoringResultsButtonClick() {
+        scoring_results.getItems().clear();
+        String scoring_data = ClientCommonFuctions.clientServerDialog(status, 6, "0");
+        scoring_data = scoring_data.substring(1, scoring_data.length() - 1);
+
+        String[] scoring_data_splited = scoring_data.split(", ");
+
+        for (int i = 0;  i < scoring_data_splited.length - 1; i++){
+            scoring_results.getItems().add(scoring_data_splited[i]);
+        }
 
     }
 
 
     @FXML
     protected void onConfirmScoringResultsButtonClick() {
-
+        if (!result_id_input.getText().trim().equals("")) {
+            ClientCommonFuctions.clientServerDialog(status, 8, result_id_input.getText());
+        }
     }
 
     @FXML
     protected void onCancelScoringResultsButtonClick() {
-
+        if (!result_id_input.getText().trim().equals("")) {
+            ClientCommonFuctions.clientServerDialog(status, 7, result_id_input.getText());
+        }
     }
 }
