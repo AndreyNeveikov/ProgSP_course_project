@@ -104,7 +104,7 @@ public class InsertTestData {
         statement.executeUpdate("INSERT INTO bank_financial_flows (" +
                 "fin_date, bank_own_funds, bank_borrowed_funds, bank_reserve_funds, bank_refinancing_rate," +
                 "central_bank_refinancing_rate, bank_monthly_expected_income, bank_monthly_expected_costs)" +
-                "VALUES ('2022-12-11', '10000000.0', '300000.0', '150000.0', '8.5', '7.0', '0.0', '157000.0');");
+                "VALUES ('2022-12-11', '10000000.0', '300000.0', '150000.0', '8.5', '7.0', '200000.0', '157000.0');");
 
         //////////////////////////////////////fct_clients_financial_data////////////////////////////////////////////////
 

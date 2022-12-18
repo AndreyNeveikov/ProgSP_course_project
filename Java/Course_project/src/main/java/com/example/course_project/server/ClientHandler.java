@@ -75,7 +75,22 @@ public class ClientHandler implements Runnable {
                         }
                         break;
                     case "3":
-                        QueriesSQL.disconnect();
+                        switch (switch_params[1]) {
+                            case "1":
+                                String fin_flows = String.valueOf(getFinFlows());
+                                out.writeUTF(fin_flows);
+                                break;
+                            case "2":
+                                String loan_products_list = String.valueOf(getLoanProducts());
+                                out.writeUTF(loan_products_list);
+                                break;
+                            case "3":
+                                break;
+                            case "4":
+                                break;
+                            case "5":
+                                break;
+                        }
                         break;
 
                 }

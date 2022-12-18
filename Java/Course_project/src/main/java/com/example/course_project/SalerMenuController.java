@@ -271,7 +271,7 @@ public class SalerMenuController {
     protected void onRefreshCreditProductsButtonClick() throws IOException {
         loan_products.getItems().clear();
         String loan_products_list = ClientCommonFuctions.clientServerDialog(status, 1,
-                "");
+                "0");
 
         loan_products_list = loan_products_list.substring(1, loan_products_list.length() - 1);
         loan_products_list = loan_products_list.replaceAll(";, ", ";");
