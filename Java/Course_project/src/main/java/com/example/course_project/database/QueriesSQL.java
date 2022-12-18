@@ -48,7 +48,6 @@ public class QueriesSQL {
         while(resSetClientPers.next()){
             client_found_id = resSetClientPers.getInt("client_id");
         }
-        System.out.println(client_found_id);
 
         ResultSet resSetClientFin = statement.executeQuery("SELECT client_total_debt, client_monthly_income, " +
                 "client_monthly_loan_payment, client_number_of_repaid_loans, " +
@@ -99,7 +98,6 @@ public class QueriesSQL {
 
             scoringDataList.add(scoringPersonData);
         }
-        System.out.println(scoringDataList);
         return String.valueOf(scoringDataList).substring(1, String.valueOf(scoringDataList).length() - 1)
                 + "," + credit_order_data[1] + "," + credit_order_data[2] + "," +
                 credit_order_data[3] + "," + credit_order_data[4];
@@ -139,7 +137,6 @@ public class QueriesSQL {
 
             clientsList.add(clients);
         }
-        System.out.println(clientsList);
 
         return clientsList;
     }
@@ -231,8 +228,6 @@ public class QueriesSQL {
 
             productList.add(products);
         }
-        System.out.println(productList);
-
         return productList;
     }
 
@@ -271,7 +266,6 @@ public class QueriesSQL {
 
             finFlow.add(finData);
         }
-        System.out.println(finFlow);
 
         return finFlow;
     }
@@ -292,5 +286,3 @@ public class QueriesSQL {
 
 }
 
-
-/*main(String[] args)*/
