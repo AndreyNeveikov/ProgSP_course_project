@@ -33,12 +33,8 @@ public class ClientHandler implements Runnable {
                 DataInputStream in = new DataInputStream(clientDialog.getInputStream());
 
                 String entry = in.readUTF();
-                System.out.println("READ from clientDialog message - " + entry);
 
                 switch_params = entry.split(";");
-
-                System.out.println(switch_params[2]);
-
 
                 switch (switch_params[0]) {
 
@@ -111,10 +107,7 @@ public class ClientHandler implements Runnable {
                                 break;
                         }
                         break;
-
                 }
-
-                System.out.println("Server Wrote message to clientDialog.");
 
                 out.flush();
 
@@ -122,11 +115,6 @@ public class ClientHandler implements Runnable {
                 out.close();
 
             }
-
-            System.out.println("Client disconnected");
-            System.out.println("Closing connections & channels.");
-
-
             clientDialog.close();
 
         } catch (IOException e) {

@@ -5,7 +5,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="paneBack" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="750.0" style="-fx-background-color: #3d6eff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.course_project.AdminMenuController">
+<AnchorPane fx:id="paneBack" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="750.0" style="-fx-background-color: #3d6eff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.course_project.AdminMenuController">
     <children>
         <AnchorPane fx:id="paneFront" layoutY="79.0" prefHeight="441.0" prefWidth="750.0" style="-fx-background-color: #e1ebff;">
             <children>
@@ -23,9 +23,9 @@
             <Text layoutX="37.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1. Кнопка &quot;Активные пользователи&quot; выведет список всех пользователей в системе." />
             <Text layoutX="37.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2. Кнопка &quot;Редактор пользователей&quot; предоставит возможность добавления, удаления и редактирования пользвателй." />
             <Text layoutX="37.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3. Кнопка &quot;Помощь и навигация&quot; переместит вас в данный раздел." />
-            <Text layoutX="37.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4. Кнопка &quot;Отключить пользователей&quot; отключит всех пользователей от сервера (включая вас)." />
-            <Text layoutX="37.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5. Кнопка &quot;Отчет об ошибках&quot; выведет информацию о всех исключительных ситуациях, возникших у пользователей." />
-            <Text layoutX="37.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="6. Кнопка &quot;Перезагрузить сервер&quot; отключит всех пользователей и перезагрузит серевер." />
+            <Text layoutX="37.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4. Кнопка &quot;Отключить сервер&quot; сделает сервер недоступным для ответа." />
+            <Text layoutX="37.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5. Кнопка &quot;Отчет об операциях&quot; откроет лог обмена информацией между сервером и клиентом." />
+            <Text layoutX="37.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="6. Кнопка &quot;Очистить базу банных&quot; удалит всю информацию из базы данных." />
             </children>
         </AnchorPane>
         <Text layoutX="65.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ТрансГазАлмазНефтьМетСтройПромСвязьБанк" wrappingWidth="619.7367706298828">

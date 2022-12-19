@@ -21,8 +21,6 @@ public class AuthorizationClient {
         String response = ClientCommonFuctions.clientServerDialog(status, 0,
                 login.getText().trim() + "/" + password.getText().trim());
 
-        System.out.println("Client connected to socket.");
-
 
         enter_the_application.getScene().getWindow().hide();
         switch (response) {

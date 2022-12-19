@@ -13,7 +13,7 @@ public class PieChartSample extends Application {
 
     @Override public void start(Stage stage) {
         Scene scene = new Scene(new Group());
-        stage.setTitle("Imported Fruits");
+        stage.setTitle("Денежные ресурсы");
         stage.setWidth(500);
         stage.setHeight(500);
 
