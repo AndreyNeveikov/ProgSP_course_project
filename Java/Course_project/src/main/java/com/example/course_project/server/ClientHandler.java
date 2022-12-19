@@ -1,6 +1,7 @@
 package com.example.course_project.server;
 
 
+import com.example.course_project.database.ActionLogger;
 import com.example.course_project.database.GetScoringResult;
 import com.example.course_project.database.QueriesSQL;
 import com.example.course_project.database.ScoringPersonData;
@@ -33,7 +34,7 @@ public class ClientHandler implements Runnable {
                 DataInputStream in = new DataInputStream(clientDialog.getInputStream());
 
                 String entry = in.readUTF();
-
+                ActionLogger.getActionLogger().addActionLogInfo(entry + " sended");
                 switch_params = entry.split(";");
 
                 switch (switch_params[0]) {
@@ -44,7 +45,24 @@ public class ClientHandler implements Runnable {
                         out.writeUTF(QueriesSQL.getUsers(login_password[0], login_password[1]));
                         break;
                     case "1":
-
+                        switch (switch_params[1]) {
+                            case "1":
+                                String action_results = ActionLogger.readActionData();
+                                out.writeUTF(action_results);
+                                break;
+                            case "2":
+                                QueriesSQL.truncateDB();
+                                out.writeUTF("DB truncated");
+                                break;
+                            case "3":
+                                String workers = QueriesSQL.getWorkers();
+                                out.writeUTF(workers);
+                                break;
+                            case "4":
+                                QueriesSQL.deleteWorker(Integer.parseInt(switch_params[2]));
+                                out.writeUTF("Deleted");
+                                break;
+                        }
                         break;
                     case "2":
                         switch (switch_params[1]) {

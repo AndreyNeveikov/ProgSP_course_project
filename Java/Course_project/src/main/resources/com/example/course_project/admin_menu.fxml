@@ -34,17 +34,17 @@
                   <Font name="Centaur" size="24.0" />
                </font>
             </Button>
-            <Button id="bug_report" fx:id="bug_report" layoutX="392.0" layoutY="165.0" mnemonicParsing="false" onAction="#onReportsButtonClick" prefHeight="46.0" prefWidth="326.0" style="-fx-background-color: #3d6eff;" text="Отчет об операциях">
+            <Button id="log_report" fx:id="log_report" layoutX="392.0" layoutY="165.0" mnemonicParsing="false" onAction="#onReportsButtonClick" prefHeight="46.0" prefWidth="326.0" style="-fx-background-color: #3d6eff;" text="Отчет об операциях">
                <font>
                   <Font name="Centaur" size="24.0" />
                </font>
             </Button>
-            <Button id="disconnect_users" fx:id="disconnect_users" layoutX="392.0" layoutY="97.0" mnemonicParsing="false" onAction="#onDisconnectButtonClick" prefHeight="46.0" prefWidth="326.0" style="-fx-background-color: #3d6eff;" text="Отключить сервер">
+            <Button id="server_off" fx:id="server_off" layoutX="392.0" layoutY="97.0" mnemonicParsing="false" onAction="#onDisconnectButtonClick" prefHeight="46.0" prefWidth="326.0" style="-fx-background-color: #3d6eff;" text="Отключить сервер">
                <font>
                   <Font name="Centaur" size="24.0" />
                </font>
             </Button>
-            <Button id="restart_server" fx:id="restart_server" layoutX="392.0" layoutY="235.0" mnemonicParsing="false" onAction="#onRestartServerButtonClick" prefHeight="46.0" prefWidth="326.0" style="-fx-background-color: #3d6eff;" text="Очистить базу данных">
+            <Button id="truncate_db" fx:id="truncate_db" layoutX="392.0" layoutY="235.0" mnemonicParsing="false" onAction="#onTruncateDBButtonClick" prefHeight="46.0" prefWidth="326.0" style="-fx-background-color: #3d6eff;" text="Очистить базу данных">
                <font>
                   <Font name="Centaur" size="24.0" />
                </font>

@@ -37,6 +37,17 @@ public class QueriesSQL {
         connection.close();
     }
 
+    public static void truncateDB() throws SQLException {
+
+        statement.executeUpdate("USE bank_credit_policy");
+        statement.executeUpdate("TRUNCATE TABLE fct_clients_financial_data;");
+        statement.executeUpdate("TRUNCATE TABLE clients_personal_data;");
+        statement.executeUpdate("TRUNCATE TABLE loan_product;");
+        statement.executeUpdate("TRUNCATE TABLE bank_employee_authorization;");
+        statement.executeUpdate("TRUNCATE TABLE bank_financial_flows;");
+
+    }
+
     public static String getClientScoringData(String credit_order) throws SQLException {
 
         String[] credit_order_data = credit_order.split("/");
@@ -246,6 +257,11 @@ public class QueriesSQL {
         }
         return productList;
     }
+    public static void deleteWorker(int id) throws SQLException {
+
+        statement.executeUpdate("USE bank_credit_policy");
+        statement.executeUpdate("DELETE FROM bank_employee_authorization WHERE employee_id='" + id + "';");
+    }
 
     public static ArrayList<LoanProducts> getLoanProducts() throws SQLException {
         return queryCreditsCommon("SELECT * FROM loan_product;");
@@ -297,6 +313,41 @@ public class QueriesSQL {
             user_status = String.valueOf(resSet.getInt("employee_access_status"));
         }
         return user_status;
+    }
+
+    public static String getWorkers() throws SQLException {
+
+        statement.executeUpdate("USE bank_credit_policy");
+
+        ArrayList<Users> employees = new ArrayList<>();
+        ResultSet resSet = statement.executeQuery("SELECT * FROM bank_employee_authorization;");
+
+        int employee_id;
+        String employee_login;
+        String employee_password;
+        int employee_access_status;
+        String employee_name;
+        String employee_surname;
+        String employee_patronymic;
+        String employee_job_title;
+
+        while(resSet.next()){
+            employee_id = resSet.getInt("employee_id");
+            employee_login = resSet.getString("employee_login");
+            employee_password = resSet.getString("employee_password");
+            employee_access_status = resSet.getInt("employee_access_status");
+            employee_name = resSet.getString("employee_name");
+            employee_surname = resSet.getString("employee_surname");
+            employee_patronymic = resSet.getString("employee_patronymic");
+            employee_job_title = resSet.getString("employee_job_title");
+
+            Users workers = new Users(employee_id, employee_login, employee_password,
+                    employee_access_status, employee_name, employee_surname,
+                    employee_patronymic, employee_job_title);
+
+            employees.add(workers);
+        }
+        return String.valueOf(employees);
     }
 
 

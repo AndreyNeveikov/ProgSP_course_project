@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="748.0" style="-fx-background-color: #3d6eff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.course_project.AdminMenuController">
+    <children>
+        <AnchorPane layoutY="81.0" prefHeight="435.0" prefWidth="748.0" style="-fx-background-color: #e1ebff;">
+            <children>
+                <Button id="move_back" fx:id="move_back" layoutX="14.0" layoutY="32.0" mnemonicParsing="false" onAction="#onMoveBackButtonClick" prefHeight="50.0" prefWidth="162.0" style="-fx-background-color: #3d6eff;" text="Назад">
+                    <font>
+                        <Font name="Centaur" size="24.0" />
+                    </font>
+                </Button>
+                <ListView id="log_results" fx:id="log_results" layoutX="198.0" layoutY="32.0" prefHeight="384.0" prefWidth="535.0" />
+                <Button id="refresh" fx:id="btnRefreshLog" layoutX="14.0" layoutY="121.0" mnemonicParsing="false" onAction="#onRefreshLogButtonClick" prefHeight="50.0" prefWidth="162.0" style="-fx-background-color: #3d6eff;" text="Обновить">
+                    <font>
+                        <Font name="Centaur" size="24.0" />
+                    </font>
+                </Button>
+            </children></AnchorPane>
+        <Text layoutX="212.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Лог серверных событий">
+            <font>
+                <Font name="Comic Sans MS Bold" size="27.0" />
+            </font>
+        </Text>
+    </children>
+</AnchorPane>

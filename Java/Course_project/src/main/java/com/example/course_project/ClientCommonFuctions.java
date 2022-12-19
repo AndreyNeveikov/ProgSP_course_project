@@ -1,5 +1,6 @@
 package com.example.course_project;
 
+import com.example.course_project.database.ActionLogger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -37,19 +38,14 @@ public class ClientCommonFuctions {
             DataInputStream ois = new DataInputStream(socket.getInputStream()); )
         {
 
-            System.out.println("Client connected to socket.");
-
             while(!socket.isOutputShutdown() && response.equals("")){
 
                 if(access) {
-
-                    System.out.println(status + ";" + function_identifier + ";" + args_list);
-
                     oos.writeUTF(status + ";" + function_identifier + ";" + args_list);
                     oos.flush();
 
                     response = ois.readUTF();
-                    System.out.println("Server response " + response);
+                    ActionLogger.getActionLogger().addActionLogInfo(response + " got");
                 }
             }
 

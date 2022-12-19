@@ -26,14 +26,14 @@ public class Users {
 
     @Override
     public String toString() {
-        return  employee_id +
+        return  employee_id + ',' +
                 employee_login + ',' +
                 employee_password + ',' +
                 employee_access_status + ',' +
                 employee_name + ',' +
                 employee_surname + ',' +
                 employee_patronymic + ',' +
-                employee_job_title + ',' +
+                employee_job_title +
                 ';';
     }
 }
